@@ -1,6 +1,10 @@
+//https://git.heroku.com/whispering-headland-24080.git
 const express = require('express')
 const app = express()
 const morgan = require('morgan')
+const cors = require('cors')
+
+app.use(cors())
 
 app.use(express.json())
 
@@ -84,6 +88,7 @@ app.post('/api/persons',(request, response) => {
   response.json(phonebook)
 })
 
-const PORT = 3001
-app.listen(PORT)
-console.log(`app listening on port ${PORT}`)
+const PORT = process.env.PORT || 3001
+app.listen(PORT, () => {
+  console.log(`app listening on port ${PORT}`)
+})
